@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas AI - Advanced Fake News Intelligence Suite</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main stylesheet link -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Background glowing orbs for glassmorphism layout -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <div class="container">
+        <!-- Application Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-icon">𝄲</span>
+                <h1 class="logo-text">VERITAS <span>AI</span></h1>
+            </div>
+            <p class="app-subtitle">Advanced Machine Learning Ensemble for Real-Time News Verification & Forensic Analysis</p>
+        </header>
+
+        <!-- Main Workspace Grid -->
+        <main class="workspace-grid">
+            
+            <!-- Left Panel: Text Input & Configuration -->
+            <section class="workspace-panel panel-input">
+                <div class="panel-card glass">
+                    <div class="card-header">
+                        <h2>Analyze News Article</h2>
+                        <p>Paste the full text of any news article or claim below to initiate multi-model verification.</p>
+                    </div>
+                    
+                    <div class="input-container">
+                        <textarea 
+                            id="article-input" 
+                            placeholder="Enter or paste article text here (minimum 10 words recommended for optimal accuracy)..."
+                            maxlength="50000"
+                        ></textarea>
+                        
+                        <div class="input-controls">
+                            <button id="btn-clear" class="btn-secondary" type="button">Clear Text</button>
+                            <button id="btn-paste" class="btn-secondary" type="button">Paste Sample</button>
+                        </div>
+                    </div>
+
+                    <div class="metadata-row">
+                        <div class="meta-item">
+                            <span class="meta-label">Characters</span>
+                            <span id="char-count" class="meta-value">0</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Words</span>
+                            <span id="word-count" class="meta-value">0</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Status</span>
+                            <span id="validation-status" class="meta-value status-idle">Ready</span>
+                        </div>
+                    </div>
+
+                    <button id="btn-verify" class="btn-primary" type="button">
+                        <span class="btn-text">Verify Claim</span>
+                        <div class="spinner" id="btn-spinner"></div>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right Panel: Dynamic Forensic Dashboard -->
+            <section class="workspace-panel panel-dashboard">
+                
+                <!-- Idle State: Prompts user to start analysis -->
+                <div id="dashboard-idle" class="panel-card glass centered-card">
+                    <div class="idle-graphic">🔍</div>
+                    <h3>Waiting for Analysis</h3>
+                    <p>Enter text in the left panel and click <strong>Verify Claim</strong> to run the machine learning ensemble and view forensic results.</p>
+                </div>
+
+                <!-- Analysis State: Loaded analysis components -->
+                <div id="dashboard-active" class="dashboard-active-layout hidden">
+                    
+                    <!-- Top Section: Consolidated Verdict & Gauge -->
+                    <div class="verdict-grid">
+                        
+                        <!-- Consensus Gauge Card -->
+                        <div class="panel-card glass gauge-card">
+                            <div class="card-header">
+                                <h3>Ensemble Consensus</h3>
+                            </div>
+                            <div class="gauge-wrapper">
+                                <svg class="gauge-svg" viewBox="0 0 120 120">
+                                    <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
+                                    <circle id="gauge-fill" class="gauge-value-stroke" cx="60" cy="60" r="50"></circle>
+                                </svg>
+                                <div class="gauge-text-container">
+                                    <span id="gauge-percentage" class="gauge-number">0%</span>
+                                    <span class="gauge-label">Fake Score</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Verdict Card -->
+                        <div class="panel-card glass verdict-card">
+                            <div class="card-header">
+                                <h3>Forensic Verdict</h3>
+                            </div>
+                            <div class="verdict-body">
+                                <div id="verdict-badge" class="verdict-badge-box">
+                                    VERIFIED
+                                </div>
+                                <p id="verdict-desc" class="verdict-explanation">
+                                    Our machine learning algorithms analyzed the syntax and terminology.
+                                </p>
+                                <div class="verdict-meta-grid">
+                                    <div class="meta-sub">
+                                        <span class="lbl">Consensus</span>
+                                        <span id="consensus-val" class="val">100%</span>
+                                    </div>
+                                    <div class="meta-sub">
+                                        <span class="lbl">Ensemble Size</span>
+                                        <span class="val">4 Models</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Section: 4 Model Classifiers Output -->
+                    <div class="classifiers-section">
+                        <h3 class="section-title">Individual Classifier Output</h3>
+                        <div class="classifiers-grid">
+                            
+                            <!-- Logistic Regression Card -->
+                            <div class="model-card glass" id="card-lr">
+                                <div class="model-meta">
+                                    <span class="model-name">Logistic Regression</span>
+                                    <span class="model-badge" id="badge-lr">True</span>
+                                </div>
+                                <div class="confidence-bar-container">
+                                    <div class="confidence-bar-fill" id="fill-lr"></div>
+                                </div>
+                                <div class="model-footer">
+                                    <span>Confidence</span>
+                                    <span id="conf-lr">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Decision Tree Card -->
+                            <div class="model-card glass" id="card-dt">
+                                <div class="model-meta">
+                                    <span class="model-name">Decision Tree</span>
+                                    <span class="model-badge" id="badge-dt">True</span>
+                                </div>
+                                <div class="confidence-bar-container">
+                                    <div class="confidence-bar-fill" id="fill-dt"></div>
+                                </div>
+                                <div class="model-footer">
+                                    <span>Confidence</span>
+                                    <span id="conf-dt">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Gradient Boosting Card -->
+                            <div class="model-card glass" id="card-gb">
+                                <div class="model-meta">
+                                    <span class="model-name">Gradient Boosting</span>
+                                    <span class="model-badge" id="badge-gb">True</span>
+                                </div>
+                                <div class="confidence-bar-container">
+                                    <div class="confidence-bar-fill" id="fill-gb"></div>
+                                </div>
+                                <div class="model-footer">
+                                    <span>Confidence</span>
+                                    <span id="conf-gb">0%</span>
+                                </div>
+                            </div>
+
+                            <!-- Random Forest Card -->
+                            <div class="model-card glass" id="card-rf">
+                                <div class="model-meta">
+                                    <span class="model-name">Random Forest</span>
+                                    <span class="model-badge" id="badge-rf">True</span>
+                                </div>
+                                <div class="confidence-bar-container">
+                                    <div class="confidence-bar-fill" id="fill-rf"></div>
+                                </div>
+                                <div class="model-footer">
+                                    <span>Confidence</span>
+                                    <span id="conf-rf">0%</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Real-Time Google News Cross-Reference Feed -->
+                    <div class="panel-card glass live-coverage-card">
+                        <div class="card-header">
+                            <div class="live-header-flex">
+                                <h3>Real-Time Live Coverage Feed</h3>
+                                <span id="live-coverage-badge" class="live-status-badge">Checking...</span>
+                            </div>
+                            <p>Dynamic cross-referencing search results queried directly from Google News RSS feed channels in real-time.</p>
+                        </div>
+                        <div class="live-feed-container" id="live-news-feed">
+                            <!-- Injected dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Bottom Section: TF-IDF Lexical Feature Analysis -->
+                    <div class="panel-card glass features-card">
+                        <div class="card-header">
+                            <h3>TF-IDF Significant Lexical Features</h3>
+                            <p>These terms represent the most mathematically unique keywords in the text compared to the trained model vocabulary.</p>
+                        </div>
+                        <div class="features-container" id="keywords-list">
+                            <!-- Injected dynamically by JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Past Prediction Logs Footer Panel -->
+        <footer class="app-footer">
+            <section class="panel-card glass history-panel">
+                <div class="card-header history-header">
+                    <h2>Session Prediction Ledger</h2>
+                    <button id="btn-clear-history" class="btn-secondary btn-small">Clear Logs</button>
+                </div>
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Sample Preview</th>
+                                <th>Verdict</th>
+                                <th>Consensus</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-rows">
+                            <tr id="history-empty">
+                                <td colspan="5" class="empty-row">No records logged in this session yet.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </footer>
+    </div>
+
+    <!-- Client Script -->
+    <script src="/static/app.js"></script>
+</body>
+</html>

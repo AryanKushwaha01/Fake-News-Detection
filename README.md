@@ -67,20 +67,32 @@ git clone https://github.com/AryanKushwaha01/Fake-News-Detection.git
 cd fake-news-detection
 ```
 
-3. Execute the Jupyter Notebook or Python scripts associated with each classifier to train and test the models. For example:
+3. Execute the Jupyter Notebook or use the newly added modular engine (`fake_news_detector.py`) to train and test models:
+   ```bash
+   python fake_news_detector.py
+   ```
 
-```bash
-python random_forest_classifier.py
-```
+4. Alternatively, launch the **Veritas AI Premium Web UI Suite** for an interactive, glassmorphic dashboard:
+   ```bash
+   python app.py
+   ```
 
-4. The code will produce evaluation metrics and provide a prediction for whether the given news is true or false based on the trained model.
+5. Open your browser and navigate to `http://127.0.0.1:5000` to start analyzing claims, contrasting ensemble outputs, and evaluating TF-IDF feature weights in real time.
+
+## Veritas AI Premium Web UI Features
+
+- **Consensus Rating**: Real-time gauge displaying aggregated fake scores computed from all four active classifiers.
+- **Ensemble Contrast Panels**: Side-by-side indicators showing prediction confidence bars for Logistic Regression, Decision Tree, Gradient Boosting, and Random Forest.
+- **TF-IDF Keyword Highlighter**: Extract and display unique mathematical features/vocabulary from entered news texts in interactive neon tags.
+- **Prediction Session Ledger**: Built-in interactive historical prediction table powered by LocalStorage for logging past results.
+- **Instant Cycles & Clears**: Cycle-paste true and fabricated sample news articles directly from the dashboard to run instant, hands-on sanity checks.
 
 ## Results
 
-We evaluated each classifier's performance using metrics such as accuracy, precision, recall, and F1 score. The results are documented in the project files.
+We evaluated each classifier's performance using metrics such as accuracy, precision, recall, and F1 score. The results are documented in the project files and can be verified via the interactive terminal engine or the Web UI.
 
 ## Model Deployment
 
-Once you are satisfied with the performance of a particular classifier, you can deploy it in a real-world application or integrate it into a larger system for automatic fake news detection.
+Once you are satisfied with the performance of a particular classifier, you can deploy it in a real-world application or run the integrated Flask web server (`app.py`) directly as an interface for news forensics.
 ---
 
